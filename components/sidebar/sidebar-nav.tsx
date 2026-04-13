@@ -7,6 +7,8 @@ import {
   MessageSquare,
   BookOpen,
   Settings,
+  GraduationCap,
+  NotebookPen,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -14,6 +16,8 @@ const NAV_ITEMS = [
   { href: "/", label: "Home", icon: Home },
   { href: "/chat", label: "Chat", icon: MessageSquare },
   { href: "/knowledge", label: "Knowledge", icon: BookOpen },
+  { href: "/guide", label: "Guide", icon: GraduationCap },
+  { href: "/notebook", label: "Notebook", icon: NotebookPen },
   { href: "/settings", label: "Settings", icon: Settings },
 ] as const
 
