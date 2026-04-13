@@ -1,0 +1,7 @@
+{
+  "app": { "name": "btr-gpt-tutor", "tagline": "AI 学习平台" },
+  "nav": { "home": "首页", "chat": "对话", "knowledge": "知识库", "settings": "设置" },
+  "chat": { "placeholder": "询问你的文档内容...", "empty": "开始对话，询问你上传的文档内容。" },
+  "knowledge": { "title": "知识库", "empty": "暂无知识库。创建一个并上传你的文档。", "create": "新建", "upload": "上传", "documents": "文档", "chunks": "块" },
+  "settings": { "title": "设置", "llm": "语言模型", "embedding": "向量模型", "provider": "服务商", "model": "模型", "apiKey": "API 密钥", "save": "保存设置" }
+}

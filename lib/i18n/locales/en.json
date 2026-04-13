@@ -1,0 +1,7 @@
+{
+  "app": { "name": "btr-gpt-tutor", "tagline": "AI Learning Platform" },
+  "nav": { "home": "Home", "chat": "Chat", "knowledge": "Knowledge", "settings": "Settings" },
+  "chat": { "placeholder": "Ask about your documents...", "empty": "Start a conversation. Ask about your uploaded documents." },
+  "knowledge": { "title": "Knowledge Bases", "empty": "No knowledge bases yet. Create one and upload your documents.", "create": "New", "upload": "Upload", "documents": "documents", "chunks": "chunks" },
+  "settings": { "title": "Settings", "llm": "LLM Provider", "embedding": "Embedding Provider", "provider": "Provider", "model": "Model", "apiKey": "API Key", "save": "Save Settings" }
+}
