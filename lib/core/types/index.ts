@@ -328,3 +328,44 @@ export interface GenerationProgress {
   readonly total: number;
   readonly message: string;
 }
+
+// ============================================================
+// Whiteboard Types
+// ============================================================
+
+export type WhiteboardTool = "pen" | "text" | "shape" | "eraser" | "clear";
+
+export interface WhiteboardStroke {
+  readonly id: string;
+  readonly tool: WhiteboardTool;
+  readonly points: readonly { x: number; y: number }[];
+  readonly color: string;
+  readonly width: number;
+  readonly text?: string;
+  readonly shape?: "rect" | "circle" | "arrow" | "line";
+}
+
+// ============================================================
+// PBL Types
+// ============================================================
+
+export interface PBLData {
+  readonly projectTitle: string;
+  readonly description: string;
+  readonly roles: readonly { id: string; name: string; description: string }[];
+  readonly milestones: readonly { id: string; title: string; description: string; isCompleted: boolean }[];
+}
+
+// ============================================================
+// Co-Writer Types
+// ============================================================
+
+export type CoWriterOperation = "rewrite" | "expand" | "shorten" | "summarize";
+
+export interface CoWriterRequest {
+  readonly selectedText: string;
+  readonly operation: CoWriterOperation;
+  readonly fullContent: string;
+  readonly knowledgeBaseId?: string;
+  readonly useWebContext?: boolean;
+}
