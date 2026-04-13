@@ -14,6 +14,7 @@ import { AgentInfoBar } from "@/components/classroom/agent-info-bar"
 import { DiscussionPanel } from "@/components/classroom/discussion-panel"
 import { TtsPlayer } from "@/components/audio/tts-player"
 import { AsrButton } from "@/components/audio/asr-button"
+import { ImmersiveWrapper } from "@/components/classroom/immersive-wrapper"
 
 export default function ClassroomDetailPage() {
   const { id } = useParams<{ id: string }>()
@@ -75,6 +76,13 @@ export default function ClassroomDetailPage() {
     if (scene) setCurrentScene(scene)
   }
 
+  function dispatchToggleImmersive() {
+    const engine = engineRef.current
+    if (!engine) return
+    engine.dispatch({ type: "toggle_immersive" })
+    setPlaybackStatus(engine.getStatus())
+  }
+
   function handleGotoScene(index: number) {
     const engine = engineRef.current
     const cls = classroom
@@ -117,6 +125,7 @@ export default function ClassroomDetailPage() {
   }
 
   return (
+    <ImmersiveWrapper onToggleImmersive={dispatchToggleImmersive}>
     <div className="flex h-full flex-col overflow-hidden">
       {/* Header */}
       <div className="flex items-center gap-3 border-b border-border px-4 py-3">
@@ -181,5 +190,6 @@ export default function ClassroomDetailPage() {
         </div>
       </div>
     </div>
+    </ImmersiveWrapper>
   )
 }
