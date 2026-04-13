@@ -106,7 +106,7 @@ export default function ClassroomPage() {
       <GenerationToolbar onGenerate={handleGenerate} />
 
       <div>
-        <h2 className="mb-3 text-sm font-semibold text-foreground">Your Classrooms</h2>
+        <h2 className="mb-3 text-sm font-semibold text-foreground">Your Lessons</h2>
 
         {isLoading && (
           <p className="text-sm text-muted-foreground">Loading…</p>

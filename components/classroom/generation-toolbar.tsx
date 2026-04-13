@@ -34,7 +34,7 @@ export function GenerationToolbar({ onGenerate }: GenerationToolbarProps) {
 
   return (
     <div className="flex flex-col gap-3 rounded-lg border border-border bg-card p-4">
-      <h2 className="text-sm font-semibold text-foreground">Generate Classroom</h2>
+      <h2 className="text-sm font-semibold text-foreground">Generate New Lesson</h2>
 
       <div className="flex flex-col gap-2 sm:flex-row sm:items-end">
         <div className="flex-1">
@@ -46,7 +46,7 @@ export function GenerationToolbar({ onGenerate }: GenerationToolbarProps) {
             type="text"
             value={topic}
             onChange={(e) => setTopic(e.target.value)}
-            placeholder="e.g. Introduction to Photosynthesis"
+            placeholder="Enter a topic (e.g. Introduction to Photosynthesis)"
             className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
           />
         </div>

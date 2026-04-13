@@ -12,10 +12,13 @@ btr-gpt-tutor is an AI-powered learning platform built as a Next.js 16 modular m
 pnpm dev          # Start dev server (localhost:3000)
 pnpm build        # Production build
 pnpm lint         # ESLint
-pnpm test         # Vitest (unit tests from tests/**)
+pnpm test         # Vitest — run all unit tests (tests/**)
 pnpm test:watch   # Vitest in watch mode
-pnpm test:e2e     # Playwright E2E (from e2e/**)
+pnpm test:e2e     # Playwright E2E (e2e/**)
 pnpm test:e2e:ui  # Playwright with UI
+
+# Run a single test file (pnpm test runs ALL files; use vitest directly to filter):
+pnpm vitest run tests/lib/core/storage/knowledge-repo.test.ts
 ```
 
 ## Architecture
@@ -29,6 +32,16 @@ Activity Modules (UI + API routes)     ← app/, components/, lib/store/
          │
    Storage Layer (Dexie/IndexedDB)     ← lib/core/storage/
 ```
+
+### Activity Modules
+
+Beyond the core chat, the codebase has several feature modules — each under its own `lib/` directory with a service and prompts file:
+- **Chat modes** (`lib/chat/modes/`) — `deep-solve`, `deep-research`, `vision-solver` alongside the base chat service
+- **Quiz** (`lib/quiz/`) — quiz generation and evaluation
+- **Guided Learning** (`lib/guide/`) — structured learning flows
+- **Notebook** (`lib/notebook/`) — persistent learning notes
+- **Plugin system** (`lib/core/plugin/`) — two-layer model: Tools (atomic operations) + Capabilities (orchestrated workflows), managed by `PluginRegistry`
+- **Web search** (`lib/core/search/`) — Tavily and DuckDuckGo providers
 
 ### Module Boundary Rule
 
@@ -76,12 +89,19 @@ Zustand stores in `lib/store/` — one per domain:
 - `session-store` — session list, active session id
 - `knowledge-store` — knowledge base list, loading state
 - `memory-store` — learner memory (profile + progress)
+- `notebook-store` — notebook entries
+- `quiz-store` — quiz state
+- `guide-store` — guided learning state
 
 ### Route Groups
 
 - `app/(workspace)/` — main chat interface with sidebar
 - `app/(utility)/` — knowledge management, settings (also with sidebar)
-- `app/api/` — REST endpoints: `chat`, `knowledge`, `knowledge/[id]/documents`, `session`, `session/[id]`, `memory`
+- `app/api/` — REST endpoints:
+  - Core: `chat`, `session`, `session/[id]`, `memory`
+  - Knowledge: `knowledge`, `knowledge/[id]`, `knowledge/[id]/documents`
+  - Activities: `quiz/generate`, `quiz/grade`, `guide/plan`, `guide/page`, `solve`, `research`
+  - Utilities: `search`, `notebook`, `notebook/[id]`, `notebook/[id]/records`
 
 ### i18n
 
@@ -102,6 +122,15 @@ Copy `.env.example` to `.env.local`. At minimum one LLM provider API key is need
 - `EMBEDDING_PROVIDER` (default: openai), `EMBEDDING_MODEL` (default: text-embedding-3-small)
 
 Note: API keys are currently passed from the client-side settings store to API routes in request bodies (not from server env vars).
+
+## Testing Gotchas
+
+- **Dexie tests need fake-indexeddb:** Any test touching the database must `import "fake-indexeddb/auto"` as the very first import. Without it, Dexie throws because IndexedDB doesn't exist in Node.
+- **Single file:** Use `pnpm vitest run <path>` — `pnpm test` always runs the full suite regardless of trailing arguments.
+
+## ID Convention
+
+All entity IDs use `prefix_nanoid12` format via `generateId(prefix)` in `lib/utils/id.ts`. Prefixes in use: `kb_`, `sess_`, `msg_`, `chunk_`.
 
 ## Inspiration References
 

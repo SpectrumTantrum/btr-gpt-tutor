@@ -26,7 +26,7 @@ const NAV_ITEMS: NavItem[] = [
   { href: "/knowledge", label: "Knowledge", icon: BookOpen },
   { href: "/guide", label: "Guide", icon: GraduationCap, iconOnly: true },
   { href: "/notebook", label: "Notebook", icon: NotebookPen, iconOnly: true },
-  { href: "/classroom", label: "Classroom", icon: Presentation },
+  { href: "/classroom", label: "Classroom", icon: Presentation, iconOnly: true },
   { href: "/settings", label: "Settings", icon: Settings },
 ]
 
