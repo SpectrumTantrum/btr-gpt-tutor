@@ -32,6 +32,7 @@ export function ModeSwitcher() {
               : "text-muted-foreground hover:text-foreground"
           )}
           aria-pressed={mode === option.value}
+          data-active={mode === option.value ? "true" : "false"}
         >
           {option.label}
         </button>

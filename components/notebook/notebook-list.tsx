@@ -20,13 +20,13 @@ export function NotebookList({ onCreateClick }: NotebookListProps) {
         <h2 className="text-xl font-semibold">Notebooks</h2>
         <Button size="sm" onClick={onCreateClick}>
           <Plus className="size-4 mr-1.5" />
-          New Notebook
+          New
         </Button>
       </div>
 
       {notebooks.length === 0 && (
         <p className="text-sm text-muted-foreground">
-          No notebooks yet. Create one to start saving notes.
+          No entries yet. Create one to start saving notes.
         </p>
       )}
 

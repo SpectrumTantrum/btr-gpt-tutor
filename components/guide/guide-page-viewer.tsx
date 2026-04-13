@@ -10,7 +10,7 @@ export function GuidePageViewer() {
   if (!guide) {
     return (
       <p className="text-sm text-muted-foreground mt-4">
-        Generate a learning plan to get started.
+        Generate a plan above to get started.
       </p>
     )
   }

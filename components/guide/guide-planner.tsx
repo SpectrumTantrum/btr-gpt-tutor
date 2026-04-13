@@ -69,7 +69,7 @@ export function GuidePlanner() {
           <Label htmlFor="guide-topic">Topic</Label>
           <Input
             id="guide-topic"
-            placeholder="e.g. Introduction to Neural Networks"
+            placeholder="Enter a topic, e.g. Neural Networks"
             value={topic}
             onChange={(e) => setTopic(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleGenerate()}

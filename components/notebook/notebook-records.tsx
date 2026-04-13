@@ -25,8 +25,8 @@ export function NotebookRecords() {
     return (
       <p className="text-sm text-muted-foreground mt-4">
         {activeNotebookId
-          ? "No records in this notebook yet."
-          : "Select a notebook to view its records."}
+          ? "No records saved here yet."
+          : "Select an entry above to view its records."}
       </p>
     )
   }
