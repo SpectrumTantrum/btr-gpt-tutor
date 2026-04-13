@@ -1,5 +1,5 @@
 import Dexie, { type Table } from "dexie"
-import type { KnowledgeBase, Document, Chunk, Session, Memory, AppSettings, Notebook, NotebookRecord, Quiz, QuizAttempt, GuidePlan, Classroom, TutorBot } from "@/lib/core/types"
+import type { KnowledgeBase, Document, Chunk, Session, Memory, AppSettings, Notebook, NotebookRecord, Quiz, QuizAttempt, GuidePlan, Classroom, TutorBot, SharedClassroom } from "@/lib/core/types"
 
 export class TutorDatabase extends Dexie {
   knowledgeBases!: Table<KnowledgeBase, string>
@@ -15,6 +15,7 @@ export class TutorDatabase extends Dexie {
   guides!: Table<GuidePlan, string>
   classrooms!: Table<Classroom, string>
   tutorbots!: Table<TutorBot, string>
+  sharedClassrooms!: Table<SharedClassroom, string>
 
   constructor(name = "TutorDatabase") {
     super(name)
@@ -82,6 +83,23 @@ export class TutorDatabase extends Dexie {
       guides: "id, knowledgeBaseId, status, createdAt",
       classrooms: "id, knowledgeBaseId, status, createdAt",
       tutorbots: "id, name, status, createdAt",
+    })
+
+    this.version(6).stores({
+      knowledgeBases: "id, name, createdAt, updatedAt",
+      documents: "id, knowledgeBaseId, name, createdAt",
+      chunks: "id, knowledgeBaseId, documentId",
+      sessions: "id, title, createdAt, updatedAt",
+      memory: "id",
+      settings: "id",
+      notebooks: "id, name, createdAt",
+      notebookRecords: "id, notebookId, source, createdAt",
+      quizzes: "id, knowledgeBaseId, createdAt",
+      quizAttempts: "id, quizId, completedAt",
+      guides: "id, knowledgeBaseId, status, createdAt",
+      classrooms: "id, knowledgeBaseId, status, createdAt",
+      tutorbots: "id, name, status, createdAt",
+      sharedClassrooms: "id, classroomId, token, createdAt",
     })
   }
 }

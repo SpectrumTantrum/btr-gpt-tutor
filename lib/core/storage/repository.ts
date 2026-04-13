@@ -13,6 +13,7 @@ import type {
   GuidePlan,
   Classroom,
   TutorBot,
+  SharedClassroom,
 } from "@/lib/core/types"
 
 // ============================================================
@@ -130,4 +131,15 @@ export interface TutorBotRepository {
   updateBot(id: string, data: Partial<Omit<TutorBot, "id">>): Promise<TutorBot>
   listBots(): Promise<TutorBot[]>
   deleteBot(id: string): Promise<void>
+}
+
+// ============================================================
+// Shared Classroom Repository
+// ============================================================
+
+export interface SharedClassroomRepository {
+  createShare(data: Omit<SharedClassroom, "id">): Promise<SharedClassroom>
+  getShareByToken(token: string): Promise<SharedClassroom | null>
+  listSharesByClassroom(classroomId: string): Promise<SharedClassroom[]>
+  deleteShare(id: string): Promise<void>
 }
