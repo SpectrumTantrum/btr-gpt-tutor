@@ -1,0 +1,7 @@
+{
+  "app": { "name": "btr-gpt-tutor", "tagline": "Plateforme d'apprentissage IA" },
+  "nav": { "home": "Accueil", "chat": "Chat", "knowledge": "Connaissances", "settings": "Paramètres" },
+  "chat": { "placeholder": "Posez une question sur vos documents...", "empty": "Démarrez une conversation. Posez des questions sur vos documents téléversés." },
+  "knowledge": { "title": "Bases de connaissances", "empty": "Aucune base de connaissances. Créez-en une et téléversez vos documents.", "create": "Nouveau", "upload": "Téléverser", "documents": "documents", "chunks": "segments" },
+  "settings": { "title": "Paramètres", "llm": "Fournisseur LLM", "embedding": "Fournisseur d'embeddings", "provider": "Fournisseur", "model": "Modèle", "apiKey": "Clé API", "save": "Enregistrer les paramètres" }
+}

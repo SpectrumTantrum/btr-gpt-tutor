@@ -1,0 +1,7 @@
+{
+  "app": { "name": "btr-gpt-tutor", "tagline": "AI 学習プラットフォーム" },
+  "nav": { "home": "ホーム", "chat": "チャット", "knowledge": "ナレッジ", "settings": "設定" },
+  "chat": { "placeholder": "ドキュメントについて質問してください...", "empty": "会話を始めましょう。アップロードしたドキュメントについて質問してください。" },
+  "knowledge": { "title": "ナレッジベース", "empty": "ナレッジベースがありません。作成してドキュメントをアップロードしてください。", "create": "新規", "upload": "アップロード", "documents": "ドキュメント", "chunks": "チャンク" },
+  "settings": { "title": "設定", "llm": "LLMプロバイダー", "embedding": "埋め込みプロバイダー", "provider": "プロバイダー", "model": "モデル", "apiKey": "APIキー", "save": "設定を保存" }
+}

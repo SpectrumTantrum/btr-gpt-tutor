@@ -91,6 +91,26 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+.glass {
+  --background: rgba(255, 255, 255, 0.05);
+  --foreground: #fafafa;
+  --primary: #6366f1;
+  --primary-foreground: #ffffff;
+  --muted: rgba(255, 255, 255, 0.08);
+  --muted-foreground: #a1a1aa;
+  --border: rgba(255, 255, 255, 0.12);
+  --card: rgba(255, 255, 255, 0.06);
+  --card-foreground: #fafafa;
+  --destructive: #ef4444;
+  --accent: rgba(255, 255, 255, 0.1);
+  --accent-foreground: #fafafa;
+}
+
+.glass body {
+  backdrop-filter: blur(80px);
+  background: linear-gradient(135deg, #0c0a1a 0%, #1a1035 50%, #0f0d1e 100%);
+}
+
 body {
   font-family: system-ui, -apple-system, sans-serif;
 }

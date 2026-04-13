@@ -13,6 +13,8 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Separator } from "@/components/ui/separator"
+import { ThemeSelector } from "@/components/settings/theme-selector"
+import { LanguageSelector } from "@/components/settings/language-selector"
 
 export default function SettingsPage() {
   const { llmConfig, embeddingConfig, setLlmConfig, setEmbeddingConfig } =
@@ -172,6 +174,19 @@ export default function SettingsPage() {
                 />
               </div>
             )}
+          </CardContent>
+        </Card>
+
+        <Separator />
+
+        {/* Appearance */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-base">Appearance</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <ThemeSelector />
+            <LanguageSelector />
           </CardContent>
         </Card>
       </div>
