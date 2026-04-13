@@ -6,6 +6,11 @@ import type {
   Message,
   Memory,
   AppSettings,
+  Notebook,
+  NotebookRecord,
+  Quiz,
+  QuizAttempt,
+  GuidePlan,
 } from "@/lib/core/types"
 
 // ============================================================
@@ -59,4 +64,44 @@ export interface MemoryRepository {
 export interface SettingsRepository {
   getSettings(): Promise<AppSettings | undefined>
   saveSettings(settings: AppSettings): Promise<void>
+}
+
+// ============================================================
+// Notebook Repository
+// ============================================================
+
+export interface NotebookRepository {
+  listNotebooks(): Promise<Notebook[]>
+  getNotebook(id: string): Promise<Notebook | null>
+  createNotebook(data: Omit<Notebook, "id">): Promise<Notebook>
+  updateNotebook(id: string, data: Partial<Omit<Notebook, "id">>): Promise<Notebook>
+  deleteNotebook(id: string): Promise<void>
+  addRecord(data: Omit<NotebookRecord, "id">): Promise<NotebookRecord>
+  getRecords(notebookId: string): Promise<NotebookRecord[]>
+  deleteRecord(id: string): Promise<void>
+}
+
+// ============================================================
+// Quiz Repository
+// ============================================================
+
+export interface QuizRepository {
+  createQuiz(data: Omit<Quiz, "id">): Promise<Quiz>
+  getQuiz(id: string): Promise<Quiz | null>
+  listQuizzes(knowledgeBaseId: string): Promise<Quiz[]>
+  deleteQuiz(id: string): Promise<void>
+  saveAttempt(data: Omit<QuizAttempt, "id">): Promise<QuizAttempt>
+  getAttempts(quizId: string): Promise<QuizAttempt[]>
+}
+
+// ============================================================
+// Guide Repository
+// ============================================================
+
+export interface GuideRepository {
+  createGuide(data: Omit<GuidePlan, "id">): Promise<GuidePlan>
+  getGuide(id: string): Promise<GuidePlan | null>
+  updateGuide(id: string, data: Partial<Omit<GuidePlan, "id">>): Promise<GuidePlan>
+  listGuides(knowledgeBaseId: string): Promise<GuidePlan[]>
+  deleteGuide(id: string): Promise<void>
 }
