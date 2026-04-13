@@ -11,6 +11,7 @@ import type {
   Quiz,
   QuizAttempt,
   GuidePlan,
+  Classroom,
 } from "@/lib/core/types"
 
 // ============================================================
@@ -104,4 +105,16 @@ export interface GuideRepository {
   updateGuide(id: string, data: Partial<Omit<GuidePlan, "id">>): Promise<GuidePlan>
   listGuides(knowledgeBaseId: string): Promise<GuidePlan[]>
   deleteGuide(id: string): Promise<void>
+}
+
+// ============================================================
+// Classroom Repository
+// ============================================================
+
+export interface ClassroomRepository {
+  createClassroom(data: Omit<Classroom, "id"> & { id?: string }): Promise<Classroom>
+  getClassroom(id: string): Promise<Classroom | null>
+  updateClassroom(id: string, data: Partial<Omit<Classroom, "id">>): Promise<Classroom>
+  listClassrooms(): Promise<Classroom[]>
+  deleteClassroom(id: string): Promise<void>
 }
