@@ -1,10 +1,12 @@
 "use client"
 
-import { useEffect, useRef, useCallback } from "react"
+import { useEffect, useRef, useCallback, useState } from "react"
 import { useParams } from "next/navigation"
-import { ArrowLeft } from "lucide-react"
+import { ArrowLeft, Download } from "lucide-react"
 import Link from "next/link"
 import type { Classroom } from "@/lib/core/types"
+import { Button } from "@/components/ui/button"
+import { ExportDialog } from "@/components/export/export-dialog"
 import { useClassroomStore } from "@/lib/store/classroom-store"
 import { PlaybackEngine } from "@/lib/classroom/playback/playback-engine"
 import { SlideCanvas } from "@/components/classroom/slide-renderer/slide-canvas"
@@ -19,6 +21,7 @@ import { ImmersiveWrapper } from "@/components/classroom/immersive-wrapper"
 export default function ClassroomDetailPage() {
   const { id } = useParams<{ id: string }>()
   const engineRef = useRef<PlaybackEngine | null>(null)
+  const [isExportOpen, setIsExportOpen] = useState(false)
 
   const classroom = useClassroomStore((s) => s.classroom)
   const currentScene = useClassroomStore((s) => s.currentScene)
@@ -137,7 +140,22 @@ export default function ClassroomDetailPage() {
           Back
         </Link>
         <h1 className="text-sm font-semibold text-foreground">{classroom.title}</h1>
+        <Button
+          size="sm"
+          variant="outline"
+          onClick={() => setIsExportOpen(true)}
+          className="ml-auto gap-1.5"
+        >
+          <Download className="size-3.5" />
+          Export
+        </Button>
       </div>
+
+      <ExportDialog
+        open={isExportOpen}
+        classroomId={id}
+        onClose={() => setIsExportOpen(false)}
+      />
 
       {/* Main layout */}
       <div className="flex flex-1 overflow-hidden">

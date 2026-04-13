@@ -11,6 +11,7 @@ import {
   NotebookPen,
   Presentation,
   PenLine,
+  Bot,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -29,6 +30,7 @@ const NAV_ITEMS: NavItem[] = [
   { href: "/notebook", label: "Notebook", icon: NotebookPen, iconOnly: true },
   { href: "/classroom", label: "Classroom", icon: Presentation, iconOnly: true },
   { href: "/co-writer", label: "Co-Writer", icon: PenLine, iconOnly: true },
+  { href: "/tutorbot", label: "TutorBot", icon: Bot, iconOnly: true },
   { href: "/settings", label: "Settings", icon: Settings },
 ]
 
