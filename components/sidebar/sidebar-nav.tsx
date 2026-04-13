@@ -14,6 +14,7 @@ import {
   Bot,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { UserMenu } from "@/components/auth/user-menu"
 
 interface NavItem {
   href: string
@@ -40,7 +41,10 @@ export function SidebarNav() {
   return (
     <aside className="w-64 border-r border-border bg-muted/30 p-4 flex flex-col">
       <h1 className="text-lg font-bold">btr-gpt-tutor</h1>
-      <nav className="mt-6 space-y-1">
+      <div className="mt-3 border-t border-border pt-3">
+        <UserMenu />
+      </div>
+      <nav className="mt-4 space-y-1">
         {NAV_ITEMS.map(({ href, label, icon: Icon, iconOnly }) => {
           const isActive =
             href === "/" ? pathname === "/" : pathname.startsWith(href)
