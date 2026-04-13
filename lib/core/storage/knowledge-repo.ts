@@ -15,8 +15,8 @@ export class DexieKnowledgeRepository implements KnowledgeRepository {
     return kb ?? null
   }
 
-  async createKnowledgeBase(data: Omit<KnowledgeBase, "id">): Promise<KnowledgeBase> {
-    const kb: KnowledgeBase = { ...data, id: nanoid() }
+  async createKnowledgeBase(data: Omit<KnowledgeBase, "id"> & { id?: string }): Promise<KnowledgeBase> {
+    const kb: KnowledgeBase = { ...data, id: data.id ?? nanoid() }
     await this.db.knowledgeBases.add(kb)
     return kb
   }

@@ -15,7 +15,7 @@ import type {
 export interface KnowledgeRepository {
   listKnowledgeBases(): Promise<KnowledgeBase[]>
   getKnowledgeBase(id: string): Promise<KnowledgeBase | null>
-  createKnowledgeBase(data: Omit<KnowledgeBase, "id">): Promise<KnowledgeBase>
+  createKnowledgeBase(data: Omit<KnowledgeBase, "id"> & { id?: string }): Promise<KnowledgeBase>
   updateKnowledgeBase(id: string, data: Partial<Omit<KnowledgeBase, "id">>): Promise<KnowledgeBase>
   deleteKnowledgeBase(id: string): Promise<void>
 
@@ -37,10 +37,10 @@ export interface KnowledgeRepository {
 export interface SessionRepository {
   listSessions(): Promise<Session[]>
   getSession(id: string): Promise<Session | null>
-  createSession(data: Omit<Session, "id">): Promise<Session>
+  createSession(data: Omit<Session, "id"> & { id?: string }): Promise<Session>
   updateSession(id: string, data: Partial<Omit<Session, "id">>): Promise<Session>
   deleteSession(id: string): Promise<void>
-  addMessage(sessionId: string, message: Omit<Message, "id">): Promise<Session>
+  addMessage(sessionId: string, message: Omit<Message, "id"> & { id?: string }): Promise<Session>
 }
 
 // ============================================================

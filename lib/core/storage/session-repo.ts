@@ -16,8 +16,8 @@ export class DexieSessionRepository implements SessionRepository {
     return session ?? null
   }
 
-  async createSession(data: Omit<Session, "id">): Promise<Session> {
-    const session: Session = { ...data, id: nanoid() }
+  async createSession(data: Omit<Session, "id"> & { id?: string }): Promise<Session> {
+    const session: Session = { ...data, id: data.id ?? nanoid() }
     await this.db.sessions.add(session)
     return session
   }
@@ -33,11 +33,11 @@ export class DexieSessionRepository implements SessionRepository {
     await this.db.sessions.delete(id)
   }
 
-  async addMessage(sessionId: string, messageData: Omit<Message, "id">): Promise<Session> {
+  async addMessage(sessionId: string, messageData: Omit<Message, "id"> & { id?: string }): Promise<Session> {
     const session = await this.db.sessions.get(sessionId)
     if (!session) throw new Error(`Session ${sessionId} not found`)
 
-    const message: Message = { ...messageData, id: nanoid() }
+    const message: Message = { ...messageData, id: messageData.id ?? nanoid() }
     const updated: Session = {
       ...session,
       messages: [...session.messages, message],
