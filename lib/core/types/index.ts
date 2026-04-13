@@ -1,4 +1,21 @@
 // ============================================================
+// Auth Types
+// ============================================================
+
+export interface AuthUser {
+  readonly id: string;
+  readonly email: string;
+  readonly name?: string;
+  readonly avatarUrl?: string;
+}
+
+export interface AuthSession {
+  readonly user: AuthUser;
+  readonly accessToken: string;
+  readonly expiresAt: number;
+}
+
+// ============================================================
 // Knowledge Base Types
 // ============================================================
 
@@ -327,6 +344,19 @@ export interface GenerationProgress {
   readonly current: number;
   readonly total: number;
   readonly message: string;
+}
+
+// ============================================================
+// Sharing Types
+// ============================================================
+
+export interface SharedClassroom {
+  readonly id: string;
+  readonly classroomId: string;
+  readonly token: string;
+  readonly createdBy: string;
+  readonly expiresAt?: number;
+  readonly createdAt: number;
 }
 
 // ============================================================
