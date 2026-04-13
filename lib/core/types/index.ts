@@ -121,3 +121,121 @@ export interface AppSettings {
   readonly llm: ProviderConfig
   readonly embedding: ProviderConfig
 }
+
+// ============================================================
+// Notebook Types
+// ============================================================
+
+export interface Notebook {
+  readonly id: string;
+  readonly name: string;
+  readonly description: string;
+  readonly color: string;
+  readonly recordCount: number;
+  readonly createdAt: number;
+  readonly updatedAt: number;
+}
+
+export interface NotebookRecord {
+  readonly id: string;
+  readonly notebookId: string;
+  readonly title: string;
+  readonly content: string;
+  readonly source: "chat" | "quiz" | "guide" | "research" | "co-writer" | "manual";
+  readonly sourceId?: string;
+  readonly tags: readonly string[];
+  readonly createdAt: number;
+}
+
+// ============================================================
+// Quiz Types
+// ============================================================
+
+export type QuestionType = "single_choice" | "multiple_choice" | "short_answer";
+
+export interface QuizQuestion {
+  readonly id: string;
+  readonly type: QuestionType;
+  readonly question: string;
+  readonly options?: readonly string[];
+  readonly correctAnswer: string;
+  readonly explanation: string;
+}
+
+export interface Quiz {
+  readonly id: string;
+  readonly knowledgeBaseId: string;
+  readonly title: string;
+  readonly questions: readonly QuizQuestion[];
+  readonly createdAt: number;
+}
+
+export interface QuizAttempt {
+  readonly id: string;
+  readonly quizId: string;
+  readonly answers: readonly QuizAnswer[];
+  readonly score: number;
+  readonly totalQuestions: number;
+  readonly completedAt: number;
+}
+
+export interface QuizAnswer {
+  readonly questionId: string;
+  readonly userAnswer: string;
+  readonly isCorrect: boolean;
+  readonly feedback: string;
+}
+
+// ============================================================
+// Guided Learning Types
+// ============================================================
+
+export interface GuidePlan {
+  readonly id: string;
+  readonly knowledgeBaseId: string;
+  readonly topic: string;
+  readonly steps: readonly GuideStep[];
+  readonly status: "in_progress" | "completed";
+  readonly currentStepIndex: number;
+  readonly createdAt: number;
+  readonly updatedAt: number;
+}
+
+export interface GuideStep {
+  readonly title: string;
+  readonly description: string;
+  readonly htmlContent?: string;
+  readonly isCompleted: boolean;
+}
+
+// ============================================================
+// Plugin and Search Types
+// ============================================================
+
+export interface ToolDefinition {
+  readonly id: string;
+  readonly name: string;
+  readonly description: string;
+  readonly execute: (params: Record<string, unknown>) => Promise<unknown>;
+}
+
+export interface CapabilityDefinition {
+  readonly id: string;
+  readonly name: string;
+  readonly description: string;
+  readonly requiredTools: readonly string[];
+}
+
+export type ChatMode = "chat" | "deep_solve" | "deep_research" | "vision_solver";
+
+export interface WebSearchResult {
+  readonly title: string;
+  readonly url: string;
+  readonly snippet: string;
+}
+
+export interface SearchOptions {
+  readonly query: string;
+  readonly maxResults?: number;
+  readonly provider?: string;
+}
