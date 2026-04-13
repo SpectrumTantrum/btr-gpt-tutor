@@ -1,6 +1,6 @@
 import { SidebarNav } from "@/components/sidebar/sidebar-nav"
 
-export default function WorkspaceLayout({
+export default function UtilityLayout({
   children,
 }: {
   children: React.ReactNode
