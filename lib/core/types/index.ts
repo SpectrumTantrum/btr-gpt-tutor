@@ -239,3 +239,92 @@ export interface SearchOptions {
   readonly maxResults?: number;
   readonly provider?: string;
 }
+
+// ============================================================
+// Classroom Types
+// ============================================================
+
+export interface Classroom {
+  readonly id: string;
+  readonly title: string;
+  readonly knowledgeBaseId: string;
+  readonly scenes: readonly Scene[];
+  readonly agents: readonly AgentConfig[];
+  readonly status: "generating" | "ready" | "error";
+  readonly createdAt: number;
+  readonly updatedAt: number;
+}
+
+export interface Scene {
+  readonly id: string;
+  readonly classroomId: string;
+  readonly type: "slide" | "quiz" | "interactive" | "discussion";
+  readonly title: string;
+  readonly order: number;
+  readonly slide?: SlideData;
+  readonly narration?: string;
+  readonly actions: readonly ClassroomAction[];
+}
+
+export interface SlideData {
+  readonly elements: readonly SlideElement[];
+  readonly background?: string;
+  readonly transition?: string;
+}
+
+export type SlideElementType = "text" | "image" | "shape" | "chart" | "latex";
+
+export interface SlideElement {
+  readonly id: string;
+  readonly type: SlideElementType;
+  readonly x: number;
+  readonly y: number;
+  readonly width: number;
+  readonly height: number;
+  readonly content: string;
+  readonly style?: Readonly<Record<string, string>>;
+}
+
+export interface AgentConfig {
+  readonly id: string;
+  readonly name: string;
+  readonly role: "teacher" | "student" | "moderator";
+  readonly persona: string;
+  readonly avatarUrl?: string;
+  readonly voiceId?: string;
+}
+
+export type ActionType =
+  | "speech"
+  | "navigate"
+  | "spotlight"
+  | "laser"
+  | "whiteboard_draw"
+  | "whiteboard_text"
+  | "whiteboard_clear"
+  | "animation"
+  | "pause"
+  | "discussion_start"
+  | "discussion_end";
+
+export interface ClassroomAction {
+  readonly id: string;
+  readonly type: ActionType;
+  readonly agentId: string;
+  readonly data: Readonly<Record<string, unknown>>;
+  readonly durationMs?: number;
+}
+
+export interface OutlineItem {
+  readonly title: string;
+  readonly description: string;
+  readonly sceneType: Scene["type"];
+  readonly keyPoints: readonly string[];
+}
+
+export interface GenerationProgress {
+  readonly phase: "outline" | "scenes" | "tts" | "complete" | "error";
+  readonly current: number;
+  readonly total: number;
+  readonly message: string;
+}
