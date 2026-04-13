@@ -12,6 +12,7 @@ import type {
   QuizAttempt,
   GuidePlan,
   Classroom,
+  TutorBot,
 } from "@/lib/core/types"
 
 // ============================================================
@@ -117,4 +118,16 @@ export interface ClassroomRepository {
   updateClassroom(id: string, data: Partial<Omit<Classroom, "id">>): Promise<Classroom>
   listClassrooms(): Promise<Classroom[]>
   deleteClassroom(id: string): Promise<void>
+}
+
+// ============================================================
+// TutorBot Repository
+// ============================================================
+
+export interface TutorBotRepository {
+  createBot(data: Omit<TutorBot, "id"> & { id?: string }): Promise<TutorBot>
+  getBot(id: string): Promise<TutorBot | null>
+  updateBot(id: string, data: Partial<Omit<TutorBot, "id">>): Promise<TutorBot>
+  listBots(): Promise<TutorBot[]>
+  deleteBot(id: string): Promise<void>
 }

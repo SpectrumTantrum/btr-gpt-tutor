@@ -369,3 +369,46 @@ export interface CoWriterRequest {
   readonly knowledgeBaseId?: string;
   readonly useWebContext?: boolean;
 }
+
+// ============================================================
+// TutorBot Types
+// ============================================================
+
+export type TutorBotStatus = "active" | "stopped" | "error";
+
+export interface SoulTemplate {
+  readonly id: string;
+  readonly name: string;
+  readonly description: string;
+  readonly persona: string;
+  readonly teachingStyle: string;
+  readonly tone: string;
+}
+
+export interface BotSkill {
+  readonly id: string;
+  readonly name: string;
+  readonly description: string;
+  readonly instructions: string;
+}
+
+export interface HeartbeatConfig {
+  readonly enabled: boolean;
+  readonly intervalMs: number;
+  readonly message: string;
+}
+
+export interface TutorBot {
+  readonly id: string;
+  readonly name: string;
+  readonly persona: string;
+  readonly soulTemplateId?: string;
+  readonly status: TutorBotStatus;
+  readonly model: string;
+  readonly skills: readonly BotSkill[];
+  readonly heartbeat: HeartbeatConfig;
+  readonly memoryContext: string;
+  readonly channels: readonly string[];
+  readonly createdAt: number;
+  readonly updatedAt: number;
+}
