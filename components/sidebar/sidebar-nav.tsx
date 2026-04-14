@@ -20,18 +20,17 @@ interface NavItem {
   href: string
   label: string
   icon: React.ComponentType<{ className?: string }>
-  iconOnly?: boolean
 }
 
 const NAV_ITEMS: NavItem[] = [
   { href: "/", label: "Home", icon: Home },
   { href: "/chat", label: "Chat", icon: MessageSquare },
   { href: "/knowledge", label: "Knowledge", icon: BookOpen },
-  { href: "/guide", label: "Guide", icon: GraduationCap, iconOnly: true },
-  { href: "/notebook", label: "Notebook", icon: NotebookPen, iconOnly: true },
-  { href: "/classroom", label: "Classroom", icon: Presentation, iconOnly: true },
-  { href: "/co-writer", label: "Co-Writer", icon: PenLine, iconOnly: true },
-  { href: "/tutorbot", label: "TutorBot", icon: Bot, iconOnly: true },
+  { href: "/guide", label: "Guide", icon: GraduationCap },
+  { href: "/notebook", label: "Notebook", icon: NotebookPen },
+  { href: "/classroom", label: "Classroom", icon: Presentation },
+  { href: "/co-writer", label: "Co-Writer", icon: PenLine },
+  { href: "/tutorbot", label: "TutorBot", icon: Bot },
   { href: "/settings", label: "Settings", icon: Settings },
 ]
 
@@ -45,7 +44,7 @@ export function SidebarNav() {
         <UserMenu />
       </div>
       <nav className="mt-4 space-y-1">
-        {NAV_ITEMS.map(({ href, label, icon: Icon, iconOnly }) => {
+        {NAV_ITEMS.map(({ href, label, icon: Icon }) => {
           const isActive =
             href === "/" ? pathname === "/" : pathname.startsWith(href)
           return (
@@ -62,7 +61,7 @@ export function SidebarNav() {
               )}
             >
               <Icon className="size-4 shrink-0" />
-              {!iconOnly && label}
+              {label}
             </Link>
           )
         })}

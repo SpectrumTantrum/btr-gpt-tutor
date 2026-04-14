@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 
 test("can navigate to tutorbot page", async ({ page }) => {
   await page.goto("/tutorbot");
-  await expect(page.getByText(/tutorbot|bot/i)).toBeVisible();
+  await expect(page.getByRole("main").getByText(/tutorbot|bot/i).first()).toBeVisible();
 });
 
 test("tutorbot page shows create button", async ({ page }) => {

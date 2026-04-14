@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 test("can navigate to chat page", async ({ page }) => {
   await page.goto("/");
   await page.click("text=Chat");
-  await expect(page.getByPlaceholder(/ask|document/i)).toBeVisible();
+  await expect(page.getByPlaceholder(/inquire|ask|document/i)).toBeVisible();
 });
 
 test("can navigate to knowledge page", async ({ page }) => {
@@ -18,6 +18,6 @@ test("can navigate to settings page", async ({ page }) => {
 
 test("chat input is disabled during streaming placeholder", async ({ page }) => {
   await page.goto("/chat");
-  const input = page.getByPlaceholder(/ask|document/i);
+  const input = page.getByPlaceholder(/inquire|ask|document/i);
   await expect(input).toBeVisible();
 });
