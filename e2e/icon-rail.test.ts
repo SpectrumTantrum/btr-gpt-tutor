@@ -21,7 +21,7 @@ test("icon rail has all 9 nav items", async ({ page }) => {
     "TutorBot",
     "Settings",
   ]) {
-    await expect(rail.getByRole("link", { name: label })).toBeVisible();
+    await expect(rail.getByRole("link", { name: label, exact: true })).toBeVisible();
   }
 });
 

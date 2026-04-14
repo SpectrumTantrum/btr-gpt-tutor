@@ -5,15 +5,16 @@ test("home page loads with correct title", async ({ page }) => {
   await expect(page).toHaveTitle(/btr-gpt-tutor/);
 });
 
-test("home page shows welcome message", async ({ page }) => {
+test("icon rail shows all primary navigation links", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByText("Welcome to btr-gpt-tutor")).toBeVisible();
+  const rail = page.getByRole("complementary", { name: /primary navigation/i });
+  for (const label of ["Home", "Chat", "Classroom", "Knowledge", "Co-Writer", "Guide", "Notebook", "TutorBot", "Settings"]) {
+    await expect(rail.getByRole("link", { name: label, exact: true })).toBeVisible();
+  }
 });
 
-test("sidebar navigation links are present", async ({ page }) => {
+test("context panel is visible on desktop", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 800 });
   await page.goto("/");
-  await expect(page.getByRole("link", { name: "Home" })).toBeVisible();
-  await expect(page.getByRole("link", { name: "Chat" })).toBeVisible();
-  await expect(page.getByRole("link", { name: "Knowledge" })).toBeVisible();
-  await expect(page.getByRole("link", { name: "Settings" })).toBeVisible();
+  await expect(page.getByRole("complementary", { name: /section context/i })).toBeVisible();
 });
