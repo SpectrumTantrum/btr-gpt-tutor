@@ -22,7 +22,7 @@ export function ThemeSelector() {
   return (
     <div className="space-y-1.5">
       <Label htmlFor="theme-select">Theme</Label>
-      <Select value={theme ?? "light"} onValueChange={setTheme}>
+      <Select value={theme ?? "light"} onValueChange={(v) => setTheme(v ?? "light")}>
         <SelectTrigger id="theme-select">
           <SelectValue placeholder="Select theme" />
         </SelectTrigger>

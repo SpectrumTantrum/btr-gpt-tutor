@@ -9,7 +9,7 @@ import { MemoryService } from "@/lib/core/memory/memory-service"
 // ============================================================
 
 const learnerProfileSchema = z.object({
-  knowledgeLevels: z.record(z.enum(["beginner", "intermediate", "advanced"])).optional(),
+  knowledgeLevels: z.record(z.string(), z.enum(["beginner", "intermediate", "advanced"])).optional(),
   learningStyle: z.enum(["visual", "verbal", "hands-on", "mixed"]).optional(),
   pacePreference: z.enum(["fast", "moderate", "thorough"]).optional(),
   goals: z.array(z.string()).optional(),

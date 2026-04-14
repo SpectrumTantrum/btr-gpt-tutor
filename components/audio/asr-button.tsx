@@ -40,8 +40,10 @@ type SpeechRecognitionAlternative = {
 
 declare global {
   interface Window {
-    SpeechRecognition?: new () => SpeechRecognitionInstance
-    webkitSpeechRecognition?: new () => SpeechRecognitionInstance
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    SpeechRecognition?: new () => any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    webkitSpeechRecognition?: new () => any
   }
 }
 

@@ -4,7 +4,7 @@ import { createGoogleGenerativeAI } from "@ai-sdk/google";
 import type { EmbeddingModel } from "ai";
 import type { ProviderConfig } from "../types";
 
-function createEmbeddingModel(config: ProviderConfig): EmbeddingModel<string> {
+function createEmbeddingModel(config: ProviderConfig): EmbeddingModel {
   const { provider, model, apiKey, baseUrl } = config;
 
   switch (provider) {

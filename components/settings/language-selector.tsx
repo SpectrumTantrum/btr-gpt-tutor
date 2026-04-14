@@ -28,7 +28,7 @@ export function LanguageSelector() {
       <Label htmlFor="language-select">Language</Label>
       <Select
         value={i18n.language}
-        onValueChange={(value) => i18n.changeLanguage(value)}
+        onValueChange={(value) => i18n.changeLanguage(value ?? undefined)}
       >
         <SelectTrigger id="language-select">
           <SelectValue placeholder="Select language" />

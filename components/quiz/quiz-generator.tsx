@@ -89,7 +89,7 @@ export function QuizGenerator() {
       <CardContent className="space-y-4">
         <div className="space-y-1.5">
           <Label>Knowledge Base</Label>
-          <Select value={selectedKbId} onValueChange={setSelectedKbId}>
+          <Select value={selectedKbId} onValueChange={(v) => setSelectedKbId(v ?? "")}>
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Select a knowledge base…" />
             </SelectTrigger>

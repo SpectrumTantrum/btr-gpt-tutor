@@ -43,8 +43,8 @@ export function KbSelector() {
       .finally(() => setLoading(false))
   }, [knowledgeBases.length, setKnowledgeBases, setLoading])
 
-  function handleChange(val: string) {
-    setKnowledgeBaseId(val === NO_KB_VALUE ? null : val)
+  function handleChange(val: string | null) {
+    setKnowledgeBaseId(val === NO_KB_VALUE || val === null ? null : val)
   }
 
   return (

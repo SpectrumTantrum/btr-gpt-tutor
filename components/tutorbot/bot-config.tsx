@@ -163,7 +163,7 @@ export function BotConfig({ open, onClose, onCreated }: BotConfigProps) {
             <Label>Soul Template</Label>
             <Select
               value={soulTemplateId}
-              onValueChange={setSoulTemplateId}
+              onValueChange={(v) => setSoulTemplateId(v ?? "")}
               disabled={isSubmitting}
             >
               <SelectTrigger>
@@ -189,7 +189,7 @@ export function BotConfig({ open, onClose, onCreated }: BotConfigProps) {
             <Label>Model</Label>
             <Select
               value={model}
-              onValueChange={setModel}
+              onValueChange={(v) => setModel(v ?? "")}
               disabled={isSubmitting}
             >
               <SelectTrigger>

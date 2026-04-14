@@ -45,7 +45,7 @@ export async function generateScene(
                 const element = el as Record<string, unknown>
                 return {
                   id: (element.id as string) ?? generateId("el"),
-                  type: (element.type as string) ?? "text",
+                  type: ((element.type as string) ?? "text") as import("@/lib/core/types").SlideElementType,
                   x: (element.x as number) ?? 0,
                   y: (element.y as number) ?? 0,
                   width: (element.width as number) ?? 100,

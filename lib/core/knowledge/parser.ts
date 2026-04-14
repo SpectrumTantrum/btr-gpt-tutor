@@ -37,7 +37,7 @@ export async function parseDocument(
       const buffer = await content.arrayBuffer();
       const { text, totalPages } = await extractText(new Uint8Array(buffer));
       return {
-        text,
+        text: Array.isArray(text) ? text.join("\n") : text,
         metadata: { name, mimeType: "application/pdf", pageCount: totalPages },
       };
     }

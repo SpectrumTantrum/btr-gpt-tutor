@@ -20,8 +20,8 @@ export default function SettingsPage() {
   const { llmConfig, embeddingConfig, setLlmConfig, setEmbeddingConfig } =
     useSettingsStore()
 
-  const llmProvider = getProviderDefinition(llmConfig.provider)
-  const embeddingProvider = getProviderDefinition(embeddingConfig.provider)
+  const llmProvider = getProviderDefinition(llmConfig.provider ?? "")
+  const embeddingProvider = getProviderDefinition(embeddingConfig.provider ?? "")
 
   const embeddingProviders = PROVIDERS.filter(
     (p) => p.embeddingModels && p.embeddingModels.length > 0
@@ -43,10 +43,11 @@ export default function SettingsPage() {
               <Select
                 value={llmConfig.provider}
                 onValueChange={(value) => {
-                  const def = getProviderDefinition(value)
+                  const safeValue = value ?? ""
+                  const def = getProviderDefinition(safeValue)
                   setLlmConfig({
                     ...llmConfig,
-                    provider: value,
+                    provider: safeValue,
                     model: def?.models[0] ?? "",
                   })
                 }}
@@ -69,7 +70,7 @@ export default function SettingsPage() {
               <Select
                 value={llmConfig.model}
                 onValueChange={(value) =>
-                  setLlmConfig({ ...llmConfig, model: value })
+                  setLlmConfig({ ...llmConfig, model: value ?? "" })
                 }
               >
                 <SelectTrigger id="llm-model">
@@ -115,10 +116,11 @@ export default function SettingsPage() {
               <Select
                 value={embeddingConfig.provider}
                 onValueChange={(value) => {
-                  const def = getProviderDefinition(value)
+                  const safeValue = value ?? ""
+                  const def = getProviderDefinition(safeValue)
                   setEmbeddingConfig({
                     ...embeddingConfig,
-                    provider: value,
+                    provider: safeValue,
                     model: def?.embeddingModels?.[0] ?? "",
                   })
                 }}
@@ -141,7 +143,7 @@ export default function SettingsPage() {
               <Select
                 value={embeddingConfig.model}
                 onValueChange={(value) =>
-                  setEmbeddingConfig({ ...embeddingConfig, model: value })
+                  setEmbeddingConfig({ ...embeddingConfig, model: value ?? "" })
                 }
               >
                 <SelectTrigger id="emb-model">

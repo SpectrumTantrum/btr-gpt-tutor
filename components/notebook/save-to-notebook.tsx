@@ -90,7 +90,7 @@ export function SaveToNotebook({
         <div className="space-y-4 py-2">
           <div className="space-y-1.5">
             <Label htmlFor="notebook-select">Notebook</Label>
-            <Select value={selectedNotebookId} onValueChange={setSelectedNotebookId}>
+            <Select value={selectedNotebookId} onValueChange={(v) => setSelectedNotebookId(v ?? "")}>
               <SelectTrigger id="notebook-select" className="w-full">
                 <SelectValue placeholder="Select a notebook…" />
               </SelectTrigger>
