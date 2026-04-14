@@ -2,6 +2,9 @@
 
 import { usePathname } from "next/navigation";
 import { ContextPanelSection } from "./context-panel-section";
+import { SessionsList } from "./sessions-list";
+import { KnowledgeList } from "./knowledge-list";
+import { ClassroomsList } from "./classrooms-list";
 
 export function ContextPanel() {
   const pathname = usePathname();
@@ -40,24 +43,24 @@ function HomeSection() {
 
 function ChatSection() {
   return (
-    <ContextPanelSection title="Chat">
-      <div className="px-2 py-3 text-xs text-muted-foreground">No sessions yet.</div>
+    <ContextPanelSection title="Chat" onCreate={() => { window.location.href = "/chat"; }}>
+      <SessionsList />
     </ContextPanelSection>
   );
 }
 
 function ClassroomSection() {
   return (
-    <ContextPanelSection title="Classroom">
-      <div className="px-2 py-3 text-xs text-muted-foreground">No lessons yet.</div>
+    <ContextPanelSection title="Classroom" onCreate={() => { window.location.href = "/classroom"; }}>
+      <ClassroomsList />
     </ContextPanelSection>
   );
 }
 
 function KnowledgeSection() {
   return (
-    <ContextPanelSection title="Knowledge">
-      <div className="px-2 py-3 text-xs text-muted-foreground">No knowledge bases yet.</div>
+    <ContextPanelSection title="Knowledge" onCreate={() => { window.location.href = "/knowledge"; }}>
+      <KnowledgeList />
     </ContextPanelSection>
   );
 }
